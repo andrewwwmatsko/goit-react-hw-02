@@ -45,7 +45,11 @@ export default function App() {
         />
       </div>
 
-      {totalFeedback ? <Feedback feedbacks={feedbacks} /> : <Notification />}
+      {totalFeedback ? (
+        <Feedback feedbacks={feedbacks} totalFeedbacks={totalFeedback} />
+      ) : (
+        <Notification />
+      )}
     </div>
   );
 }

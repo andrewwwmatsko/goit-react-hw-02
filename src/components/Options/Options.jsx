@@ -43,14 +43,3 @@ export default function Options({
     </div>
   );
 }
-
-{
-  /* <button
-  onClick={() => {
-    addFeedback(buttonName);
-  }}
-  className={css.button}
->
-  {children}
-</button>; */
-}
