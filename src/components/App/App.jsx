@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Description from "../Description/Description";
 import Options from "../Options/Options";
@@ -8,10 +8,18 @@ import css from "./App.module.css";
 import Notification from "../Notification/Notification";
 
 export default function App() {
-  const [feedbacks, setFeedback] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
+  const [feedbacks, setFeedback] = useState(() => {
+    const savedFeedbacks = JSON.parse(window.localStorage.getItem("feedbacks"));
+
+    if (savedFeedbacks !== null) {
+      return savedFeedbacks;
+    }
+
+    return {
+      good: 0,
+      neutral: 0,
+      bad: 0,
+    };
   });
 
   const updateFeedback = (feedbackType) => {
@@ -28,6 +36,10 @@ export default function App() {
       bad: 0,
     });
   };
+
+  useEffect(() => {
+    window.localStorage.setItem("feedbacks", JSON.stringify(feedbacks));
+  }, [feedbacks]);
 
   const totalFeedback = feedbacks.bad + feedbacks.good + feedbacks.neutral;
 
