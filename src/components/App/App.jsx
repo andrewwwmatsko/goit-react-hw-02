@@ -43,6 +43,10 @@ export default function App() {
 
   const totalFeedback = feedbacks.bad + feedbacks.good + feedbacks.neutral;
 
+  const perentageOfPositiveFeedbacks = Math.round(
+    (feedbacks.good / totalFeedback) * 100
+  );
+
   return (
     <div className={css.container}>
       <Description
@@ -58,7 +62,11 @@ export default function App() {
       </div>
 
       {totalFeedback ? (
-        <Feedback feedbacks={feedbacks} totalFeedbacks={totalFeedback} />
+        <Feedback
+          feedbacks={feedbacks}
+          totalFeedbacks={totalFeedback}
+          perentageOfPositiveFeedbacks={perentageOfPositiveFeedbacks}
+        />
       ) : (
         <Notification />
       )}
